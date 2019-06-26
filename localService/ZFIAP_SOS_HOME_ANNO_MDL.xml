@@ -1,0 +1,113 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='FI_S4HANA')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='FI_S4HANA')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='FI_S4HANA')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference Uri="../../../sap/zfiap_sos_home_srv/$metadata"><edmx:Include Namespace="ZFIAP_SOS_HOME_SRV" Alias="SAP"/></edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zfiap_sos_home_anno_mdl.v1">
+			<Annotations Target="ZFIAP_SOS_HOME_SRV.ZCDS_C_SOS_HOME_TPType">
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.CollectionFacet"><PropertyValue Property="Label" String="General Information"/><PropertyValue Property="ID" String="GeneralInfo"/>
+							<PropertyValue Property="Facets">
+								<Collection>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="ID" String="FirstCol"/><PropertyValue Property="Target" AnnotationPath="@UI.Identification"/></Record>
+									<Record Type="UI.ReferenceFacet"><PropertyValue Property="ID" String="SecondCol"/><PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#SecondCol"/></Record>
+								</Collection>
+							</PropertyValue>
+						</Record>
+						<Record Type="UI.ReferenceFacet"><PropertyValue Property="Label" String="Item Details"/><PropertyValue Property="ID" String="ItemDetails"/><PropertyValue Property="Target" AnnotationPath="to_SOSReqItem/@UI.LineItem"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.FieldGroup" Qualifier="SecondCol">
+					<Record>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqStatus"/></Record>
+								<Record Type="UI.DataField"><PropertyValue Property="Label" String="Notes"/><PropertyValue Property="Value" Path="SOSReqNotes"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="SOS Request"/><PropertyValue Property="TypeNamePlural" String="SOS Requests"/>
+						<PropertyValue Property="Title"><Record Type="UI.DataField"/></PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Request ID"/><PropertyValue Property="Value" Path="SOSReqNum"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Submit Date"/><PropertyValue Property="Value" Path="SOSDate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Accounting Unit"/><PropertyValue Property="Value" Path="SOSReqItemCount"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqNum"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqItemCount"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSDate"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqTotAmt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSUser"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqUserName"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Value" Path="SOSReqStatus"/></Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.PresentationVariant">
+					<Record>
+						<PropertyValue Property="SortOrder">
+							<Collection>
+								<Record Type="Common.SortOrderType"><PropertyValue Property="Property" PropertyPath="SOSReqNum"/><PropertyValue Property="Descending" Bool="true"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>SOSReqNum</PropertyPath>
+						<PropertyPath>SOSReqItemCount</PropertyPath>
+						<PropertyPath>SOSDate</PropertyPath>
+						<PropertyPath>SOSReqTotAmt</PropertyPath>
+						<PropertyPath>SOSUser</PropertyPath>
+						<PropertyPath>SOSReqUserName</PropertyPath>
+						<PropertyPath>SOSReqStatus</PropertyPath>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant" Qualifier="ReportSummary">
+					<Record><PropertyValue Property="Text" String="SOS Requests Summary"/></Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant" Qualifier="ReportSearch">
+					<Record><PropertyValue Property="Text" String="SOS Search Requests"/></Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionVariant" Qualifier="ReportLast30">
+					<Record><PropertyValue Property="Text" String="Last 30days’ SOS Requests"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZFIAP_SOS_HOME_SRV.ZCDS_I_SOS_HOME_ITEMType">
+				<Annotation Term="UI.HeaderInfo">
+					<Record><PropertyValue Property="TypeName" String="SOS Home"/>
+						<PropertyValue Property="Title"><Record Type="UI.DataField"/></PropertyValue>
+					</Record>
+					<Annotation Term="Core.Messages">
+						<Collection>
+							<Record><PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/><PropertyValue Property="severity" String="error"/></Record>
+						</Collection>
+					</Annotation>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Line #"/><PropertyValue Property="Value" Path="buzei"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="SKU"/><PropertyValue Property="Value" Path="matnr"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Description"/><PropertyValue Property="Value" Path="maktx"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Quantity"/><PropertyValue Property="Value" Path="bdmng"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Unit Cost"/><PropertyValue Property="Value" Path="UnitCost"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Total"/><PropertyValue Property="Value" Path="ItmTotalAmt"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Status"/><PropertyValue Property="Value" Path="SOSItemStatus"/></Record>
+						<Record Type="UI.DataField"><PropertyValue Property="Label" String="Back Order"/><PropertyValue Property="Value" Path="zbkord"/></Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

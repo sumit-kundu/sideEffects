@@ -1,0 +1,62 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://dldf20app00.irving.zalecorp.com:8001/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='FI_S4HANA')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZFIAP_SOS_HOME_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZCDS_C_SOS_HOME_TPType" sap:label="Consumption CDS for SOS Home page" sap:content-version="1">
+				<Key><PropertyRef Name="SOSReqNum"/><PropertyRef Name="SOSYear"/><PropertyRef Name="SOSStore"/></Key><Property Name="SOSReqNum" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Request Id"
+					sap:quickinfo="Request Number" sap:creatable="false" sap:updatable="false"/><Property Name="SOSYear" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Fiscal Year"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSStore" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Site"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Submit Date" sap:quickinfo="Created On"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Requester" sap:quickinfo="Created By"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSReqItemCount" Type="Edm.Int32" sap:label="Item Count" sap:creatable="false" sap:updatable="false"/><Property Name="SOSReqStatus" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Char 20"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSReqNotes" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Character 100"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSReqTotAmt" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="SOSCurrency" sap:label="Amount" sap:creatable="false"
+					sap:updatable="false"/><Property Name="SOSCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:quickinfo="Currency Key" sap:semantics="currency-code"/><Property Name="SOSReqUserName" Type="Edm.String" MaxLength="80" sap:label="Submitted By" sap:quickinfo="Full Name of Person"
+					sap:creatable="false" sap:updatable="false"/><Property Name="SOSEdit" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Active"
+					sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')" sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_SOSReqItem" Relationship="ZFIAP_SOS_HOME_SRV.assoc_D9749EB9F873E67DF6F0EBC9B059C454"
+					FromRole="FromRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454" ToRole="ToRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454"
+					sap:creatable-path="zactive"/></EntityType>
+			<EntityType Name="ZCDS_I_SOS_HOME_ITEMType" sap:label="Item Data to display in Home Page" sap:content-version="1">
+				<Key><PropertyRef Name="req_num"/><PropertyRef Name="gjahr"/><PropertyRef Name="buzei"/><PropertyRef Name="werks"/></Key><Property Name="req_num" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Request Number"
+					sap:creatable="false" sap:updatable="false"/><Property Name="gjahr" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Fiscal Year"
+					sap:creatable="false" sap:updatable="false"/><Property Name="buzei" Type="Edm.String" Nullable="false" MaxLength="5" sap:display-format="NonNegative" sap:label="SOS Line item"
+					sap:quickinfo="SOS Request Line item" sap:creatable="false" sap:updatable="false"/><Property Name="werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Site"
+					sap:creatable="false" sap:updatable="false"/><Property Name="afnam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:creatable="false"
+					sap:updatable="false"/><Property Name="matnr" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Article" sap:quickinfo="Article Number"
+					sap:creatable="false" sap:updatable="false"/><Property Name="maktx" Type="Edm.String" MaxLength="40" sap:label="Article description" sap:creatable="false" sap:updatable="false"/><Property Name="bdmng" Type="Edm.Decimal" Precision="13" Scale="0" sap:unit="meins"/><Property Name="meins" Type="Edm.String" MaxLength="3" sap:label="Base Unit of Measure" sap:creatable="false" sap:updatable="false"
+					sap:semantics="unit-of-measure"/><Property Name="ItmTotalAmt" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="CatalogSKUCurrency" sap:label="Subtotal"
+					sap:creatable="false" sap:updatable="false"/><Property Name="UnitCost" Type="Edm.Decimal" Precision="13" Scale="2" sap:unit="CatalogSKUCurrency" sap:creatable="false"
+					sap:updatable="false"/><Property Name="CatalogSKUCurrency" Type="Edm.String" MaxLength="5" sap:label="Currency" sap:quickinfo="Currency Key" sap:creatable="false"
+					sap:updatable="false" sap:semantics="currency-code"/><Property Name="minbm" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="meins" sap:label="Minimum Order Qty"
+					sap:quickinfo="Minimum Purchase Order Quantity" sap:creatable="false" sap:updatable="false"/><Property Name="bstma" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="meins" sap:label="Max. Order Quantity"
+					sap:quickinfo="Maximum Purchase Order Quantity" sap:creatable="false" sap:updatable="false"/><Property Name="reswk" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Supplying Site"
+					sap:quickinfo="Supplying (issuing) site in case of stock transport order" sap:creatable="false" sap:updatable="false"/><Property Name="cpudt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On" sap:creatable="false"
+					sap:updatable="false"/><Property Name="cputm" Type="Edm.Time" Precision="0" sap:label="Created at" sap:creatable="false" sap:updatable="false"/><Property Name="mtart" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Article type" sap:creatable="false"
+					sap:updatable="false"/><Property Name="matkl" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Merchandise Category" sap:creatable="false"
+					sap:updatable="false"/><Property Name="kostl" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cost Center" sap:creatable="false"
+					sap:updatable="false"/><Property Name="lgort" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Storage location" sap:creatable="false"
+					sap:updatable="false"/><Property Name="bdter" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Requirements date"
+					sap:quickinfo="Requirements date for the component" sap:creatable="false" sap:updatable="false"/><Property Name="zbkord" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Back Order" sap:creatable="false" sap:updatable="false"/><Property Name="rsnum" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Reservation"
+					sap:quickinfo="Number of reservation/dependent requirements" sap:creatable="false" sap:updatable="false"/><Property Name="rspos" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Item no."
+					sap:quickinfo="Item Number of Reservation / Dependent Requirements" sap:creatable="false" sap:updatable="false"/><Property Name="rsdat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Reservation date"
+					sap:quickinfo="Earliest possible reservation date" sap:creatable="false" sap:updatable="false"/><Property Name="mblnr" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Article Document"
+					sap:quickinfo="Number of Article Document" sap:creatable="false" sap:updatable="false"/><Property Name="budat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Posting Date"
+					sap:quickinfo="Posting Date in the Document" sap:creatable="false" sap:updatable="false"/><Property Name="ebeln" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Purchasing Document"
+					sap:quickinfo="Purchasing Document Number" sap:creatable="false" sap:updatable="false"/><Property Name="ebelp" Type="Edm.String" MaxLength="5" sap:display-format="NonNegative" sap:label="Item"
+					sap:quickinfo="Item Number of Purchasing Document" sap:creatable="false" sap:updatable="false"/><Property Name="aedat" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On"
+					sap:quickinfo="Date of Last Change" sap:creatable="false" sap:updatable="false"/><Property Name="zerror" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Error Message" sap:creatable="false"
+					sap:updatable="false"/><Property Name="notes" Type="Edm.String" MaxLength="200" sap:label="Notes" sap:quickinfo="SOS Notes" sap:creatable="false"
+					sap:updatable="false"/><Property Name="SOSItemStatus" Type="Edm.String" MaxLength="11" sap:display-format="UpperCase" sap:creatable="false" sap:updatable="false"/><Property Name="zactive" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Active"/></EntityType>
+			<Association Name="assoc_D9749EB9F873E67DF6F0EBC9B059C454" sap:content-version="1"><End Type="ZFIAP_SOS_HOME_SRV.ZCDS_C_SOS_HOME_TPType" Multiplicity="1" Role="FromRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454"/><End Type="ZFIAP_SOS_HOME_SRV.ZCDS_I_SOS_HOME_ITEMType" Multiplicity="*" Role="ToRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454"/></Association>
+			<EntityContainer Name="ZFIAP_SOS_HOME_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZCDS_C_SOS_HOME_TP" EntityType="ZFIAP_SOS_HOME_SRV.ZCDS_C_SOS_HOME_TPType" sap:creatable="false" sap:deletable="false"
+				sap:content-version="1"/><EntitySet Name="ZCDS_I_SOS_HOME_ITEM" EntityType="ZFIAP_SOS_HOME_SRV.ZCDS_I_SOS_HOME_ITEMType" sap:content-version="1"
+				sap:deletable-path="zactive" sap:updatable-path="zactive"/>
+				<AssociationSet Name="assoc_D9749EB9F873E67DF6F0EBC9B059C454" Association="ZFIAP_SOS_HOME_SRV.assoc_D9749EB9F873E67DF6F0EBC9B059C454"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDS_C_SOS_HOME_TP" Role="FromRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454"/><End EntitySet="ZCDS_I_SOS_HOME_ITEM" Role="ToRole_assoc_D9749EB9F873E67DF6F0EBC9B059C454"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://dldf20app00.irving.zalecorp.com:8001/sap/opu/odata/sap/ZFIAP_SOS_HOME_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://dldf20app00.irving.zalecorp.com:8001/sap/opu/odata/sap/ZFIAP_SOS_HOME_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
